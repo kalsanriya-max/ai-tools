@@ -150,3 +150,518 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="All-in-One AI Tools Hub: free AI text, image, code, voice, resume, and more. The best free AI tools platform for creators.">
+  <meta name="keywords" content="free AI tools, best AI tools website, AI generator online, AI text generator, AI image generator, AI code helper, AI resume builder">
+  <meta name="author" content="All-in-One AI Tools Hub">
+  <title>All-in-One AI Tools Hub | Free AI Generators</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.5;
+    }
+
+    /* Dark mode */
+    body.dark {
+      background: #0b1120;
+      color: #e2e8f0;
+    }
+
+    /* container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header / navbar */
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      gap: 16px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    body.dark .navbar {
+      border-bottom-color: #1e293b;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #334155;
+    }
+    body.dark .nav-links a {
+      color: #cbd5e1;
+    }
+    .nav-links a:hover {
+      color: #3b82f6;
+    }
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #334155;
+    }
+    body.dark .theme-toggle {
+      color: #facc15;
+    }
+    /* hero */
+    .hero {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #475569;
+    }
+    body.dark .hero p {
+      color: #94a3b8;
+    }
+    /* search + categories */
+    .search-section {
+      margin: 32px 0 24px;
+    }
+    .search-bar {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 60px;
+      border: 1px solid #cbd5e1;
+      overflow: hidden;
+    }
+    body.dark .search-bar {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 14px 20px;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1rem;
+    }
+    .search-bar button {
+      background: #3b82f6;
+      border: none;
+      padding: 0 20px;
+      color: white;
+      cursor: pointer;
+    }
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 28px 0 20px;
+    }
+    .cat-btn {
+      background: #eef2ff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    body.dark .cat-btn {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    .cat-btn.active {
+      background: #3b82f6;
+      color: white;
+    }
+    /* tools grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .tool-card {
+      background: white;
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #e2e8f0;
+    }
+    body.dark .tool-card {
+      background: #1e293b;
+      border-color: #334155;
+      box-shadow: none;
+    }
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1);
+    }
+    .tool-icon {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+    .tool-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .tool-card p {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    body.dark .tool-card p {
+      color: #94a3b8;
+    }
+    /* Tool modal / individual tool page simulation */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.2s;
+    }
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .tool-modal {
+      background: white;
+      max-width: 700px;
+      width: 90%;
+      border-radius: 32px;
+      padding: 28px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    body.dark .tool-modal {
+      background: #0f172a;
+      border: 1px solid #334155;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .tool-input-area textarea, .tool-input-area input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 20px;
+      border: 1px solid #cbd5e1;
+      background: #f1f5f9;
+      font-family: inherit;
+      margin: 12px 0;
+    }
+    body.dark .tool-input-area textarea, body.dark .tool-input-area input {
+      background: #1e293b;
+      border-color: #475569;
+      color: white;
+    }
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .output-box {
+      background: #f1f5f9;
+      border-radius: 20px;
+      padding: 18px;
+      margin: 20px 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    body.dark .output-box {
+      background: #111827;
+    }
+    .ad-placeholder {
+      background: #e9ecef;
+      text-align: center;
+      padding: 12px;
+      margin: 20px 0;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      color: #6c757d;
+    }
+    body.dark .ad-placeholder {
+      background: #1f2a3e;
+    }
+    footer {
+      margin-top: 60px;
+      padding: 30px 0;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+    .blog-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .blog-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+    }
+    body.dark .blog-card {
+      background: #1e293b;
+    }
+    @media (max-width: 680px) {
+      .hero h1 { font-size: 2rem; }
+      .navbar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo"><i class="fas fa-robot"></i> All-in-One AI Hub</div>
+    <div class="nav-links">
+      <a href="#" data-page="home">Home</a>
+      <a href="#" data-page="tools">All Tools</a>
+      <a href="#" data-page="blog">Blog</a>
+      <a href="#" data-page="about">About</a>
+      <a href="#" data-page="contact">Contact</a>
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+    </div>
+  </nav>
+
+  <!-- Dynamic content pages -->
+  <main id="main-content">
+    <!-- Home Page (default) -->
+    <div id="home-page">
+      <div class="hero">
+        <h1>Supercharge Your Creativity with AI</h1>
+        <p>10+ powerful AI tools: text, image, code, voice, resume & more — all free.</p>
+      </div>
+      <div class="search-section">
+        <div class="search-bar">
+          <input type="text" id="globalSearchInput" placeholder="Search tools (e.g., image, resume, chatbot)">
+          <button id="globalSearchBtn"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      <div class="categories" id="categoriesContainer"></div>
+      <div id="toolsGridHome" class="tools-grid"></div>
+      <!-- AdSense placeholder between content -->
+      <div class="ad-placeholder"><i class="fas fa-ad"></i> Advertisement - Google AdSense (Leaderboard)</div>
+      <div class="blog-preview">
+        <div class="blog-card"><i class="fas fa-newspaper"></i> <h3>Top 10 AI Prompts for 2025</h3><p>Boost productivity with smart prompts...</p><a href="#" data-page="blog">Read more →</a></div>
+        <div class="blog-card"><i class="fas fa-chart-line"></i> <h3>How AI is Changing Content Creation</h3><p>Insights and trends for creators...</p><a href="#" data-page="blog">Read more →</a></div>
+        <div class="blog-card"><i class="fas fa-code"></i> <h3>Best Free AI Coding Assistants</h3><p>Review and comparison...</p><a href="#" data-page="blog">Read more →</a></div>
+      </div>
+    </div>
+
+    <!-- All Tools Page (hidden initially) -->
+    <div id="tools-page" style="display:none;">
+      <h2 style="margin: 30px 0 10px;">⚙️ All AI Tools</h2>
+      <div class="search-bar" style="margin-bottom:20px; max-width:100%">
+        <input type="text" id="allToolsSearch" placeholder="Filter tools...">
+      </div>
+      <div id="allToolsGrid" class="tools-grid"></div>
+      <div class="ad-placeholder"><i class="fas fa-ad"></i> AdSense Sidebar / In-content</div>
+    </div>
+
+    <!-- Blog Page -->
+    <div id="blog-page" style="display:none;">
+      <h2 style="margin:30px 0 10px;">📝 AI Insights & Tutorials</h2>
+      <div style="display:grid; gap:24px;">
+        <div style="background:#fff; border-radius:24px; padding:20px;"><h3>How to Make Money with AI Tools</h3><p>Discover passive income using AI generators...</p><small>SEO tip: high CPC keywords like "AI business tools"</small></div>
+        <div style="background:#fff; border-radius:24px; padding:20px;"><h3>Best AI Image Prompts for Stunning Art</h3><p>Master prompt engineering for DALL-E, Midjourney alternatives</p></div>
+        <div style="background:#fff; border-radius:24px; padding:20px;"><h3>AI Resume Tips That Get You Hired</h3><p>Using our AI Resume Builder effectively</p></div>
+      </div>
+      <div class="ad-placeholder">AdSense - Between articles</div>
+    </div>
+
+    <!-- About Us -->
+    <div id="about-page" style="display:none;">
+      <h2 style="margin:30px 0 20px;">About All-in-One AI Hub</h2>
+      <p>We provide free, accessible AI tools for creators, marketers, and developers. Our mission is to democratize AI technology. Monetized via Google AdSense to keep services free forever.</p>
+      <p>Contact us for partnerships or feedback.</p>
+    </div>
+
+    <!-- Contact -->
+    <div id="contact-page" style="display:none;">
+      <h2 style="margin:30px 0 20px;">📧 Contact Us</h2>
+      <form id="contactForm" style="max-width:500px; display:flex; flex-direction:column; gap:16px;">
+        <input type="text" placeholder="Your Name" required style="padding:12px; border-radius:40px; border:1px solid #cbd5e1;">
+        <input type="email" placeholder="Email" required style="padding:12px; border-radius:40px;">
+        <textarea rows="4" placeholder="Message" required style="padding:12px; border-radius:24px;"></textarea>
+        <button type="submit" class="btn-primary">Send Message</button>
+      </form>
+      <div class="ad-placeholder">AdSense placement</div>
+    </div>
+
+    <!-- Privacy Policy & Terms (simple inline) -->
+    <div id="privacy-page" style="display:none;">
+      <h2>Privacy Policy & Terms</h2>
+      <p>We use cookies and collect minimal data to improve service. Ads by Google AdSense. By using this website, you agree to our terms. We are not responsible for generated content.</p>
+      <p>For full compliance, this page includes essential legal information required for AdSense approval.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 All-in-One AI Tools Hub | <a href="#" data-page="privacy" style="text-decoration:underline;">Privacy & Terms</a> | <i class="fas fa-envelope"></i> support@aihub.com</p>
+    <p>✨ Monetized with Google AdSense | High CPC keywords: free AI tools, best AI website</p>
+  </footer>
+</div>
+
+<!-- Modal for individual tool interaction -->
+<div id="toolModal" class="modal-overlay">
+  <div class="tool-modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">AI Tool</h2>
+      <button id="closeModalBtn" style="background:none; border:none; font-size:1.8rem; cursor:pointer;">&times;</button>
+    </div>
+    <div id="modalBody">
+      <!-- dynamic input fields -->
+    </div>
+    <div class="ad-placeholder">AdSense - Below tool output</div>
+    <div class="share-buttons" style="display:flex; gap:12px; margin-top:16px;">
+      <button id="copyOutputBtn" class="btn-primary" style="background:#4b5563;"><i class="fas fa-copy"></i> Copy</button>
+      <button id="shareTwitterBtn" class="btn-primary" style="background:#1da1f2;"><i class="fab fa-twitter"></i> Share</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ---------- TOOLS DATABASE ----------
+  const toolsList = [
+    { id: "textGen", name: "AI Text Generator", category: "Writing", icon: "✍️", desc: "Blog, story, captions", promptExample: "Write a blog post about AI future" },
+    { id: "imageGen", name: "AI Image Generator", category: "Image", icon: "🎨", desc: "Generate images from text", promptExample: "A futuristic city at sunset" },
+    { id: "logoMaker", name: "AI Logo Maker", category: "Business", icon: "🏷️", desc: "Create brand logo", promptExample: "Modern tech startup logo with blue gradient" },
+    { id: "codeGen", name: "AI Code Generator", category: "Development", icon: "💻", desc: "Write code snippets", promptExample: "Python function to reverse a string" },
+    { id: "chatbot", name: "AI Chatbot", category: "Chat", icon: "🤖", desc: "Answer questions", promptExample: "Explain quantum computing simply" },
+    { id: "youtubeScript", name: "YouTube Script Generator", category: "Video", icon: "📹", desc: "Generate video scripts", promptExample: "Script for 5-min tech review of iPhone 15" },
+    { id: "thumbnailGen", name: "AI Thumbnail Generator", category: "Image", icon: "🖼️", desc: "YouTube thumbnail ideas", promptExample: "Epic gaming thumbnail with neon effects" },
+    { id: "resumeBuilder", name: "AI Resume Builder", category: "Business", icon: "📄", desc: "Professional resume", promptExample: "Resume for software engineer with 3 years experience" },
+    { id: "storyGen", name: "AI Story Generator", category: "Writing", icon: "📖", desc: "Kids & emotional stories", promptExample: "Write a short story about a brave squirrel" },
+    { id: "voiceGen", name: "AI Voice Generator (TTS)", category: "Audio", icon: "🎤", desc: "Text to speech demo", promptExample: "Hello, welcome to AI tools hub!" }
+  ];
+
+  // Simulate AI generation (mock API for demo, ready to replace with real OpenAI)
+  async function simulateAI(toolId, userInput) {
+    await new Promise(resolve => setTimeout(resolve, 800));
+    if (!userInput.trim()) return "Please provide input to generate content.";
+    switch(toolId) {
+      case "textGen": return `✨ AI Text: ${userInput}\n\nOnce upon a time in AI world, ${userInput} revolutionized content. Here is a creative blog excerpt... [Generated content]`;
+      case "imageGen": return `🖼️ [AI Image Preview] Prompt: "${userInput}". (In production, integrate DALL-E / Stable Diffusion API). Demo: 🌄✨ high quality image ready.`;
+      case "logoMaker": return `🏷️ Logo concept: "${userInput}" → Minimalist vector style with #3b82f6. (Full API integration available).`;
+      case "codeGen": return `💻 Code:\n\`\`\`\n${userInput}\n\`\`\`\n// AI generated solution:\nfunction example() { console.log("AI works!"); }`;
+      case "chatbot": return `🤖 AI Chatbot: ${userInput}\n\nResponse: That's an insightful question! AI is transforming industries. Here's more detail...`;
+      case "youtubeScript": return `🎬 YouTube Script: "${userInput}"\n[Intro] Hook viewers... [Body] Explain key points... [Outro] Like & subscribe!`;
+      case "thumbnailGen": return `🖼️ Thumbnail idea: "${userInput}" → high contrast, bold text, clickable elements. (API ready for image generation)`;
+      case "resumeBuilder": return `📄 Resume based on: "${userInput}"\n\nJOHN DOE\nEmail: john@example.com\nExperience: Senior developer with AI expertise... (professional summary)`;
+      case "storyGen": return `📖 Story: ${userInput}\n\nOnce in a magical forest, a little creature learned bravery... The end. ✨`;
+      case "voiceGen": return `🎧 Voice output (Text-to-Speech demo): "${userInput}". (Integrate with ElevenLabs or Web Speech API for real audio)`;
+      default: return "AI generated result: " + userInput;
+    }
+  }
+
+  // Render tools grid
+  function renderToolsGrid(containerId, filterCategory = null, searchTerm = "") {
+    let filtered = [...toolsList];
+    if (filterCategory && filterCategory !== "All") filtered = filtered.filter(t => t.category === filterCategory);
+    if (searchTerm) filtered = filtered.filter(t => t.name.toLowerCase().includes(searchTerm.toLowerCase()) || t.category.toLowerCase().includes(searchTerm));
+    const container = document.getElementById(containerId);
+    if(!container) return;
+    container.innerHTML = filtered.map(tool => `
+      <div class="tool-card" data-tool-id="${tool.id}" data-tool-name="${tool.name}" data-category="${tool.category}">
+        <div class="tool-icon">${tool.icon}</div>
+        <h3>${tool.name}</h3>
+        <p>${tool.desc}</p>
+      </div>
+    `).join("");
+    // attach event listeners to cards
+    document.querySelectorAll(`#${containerId} .tool-card`).forEach(card => {
+      card.addEventListener("click", (e) => {
+        const toolId = card.dataset.toolId;
+        const tool = toolsList.find(t => t.id === toolId);
+        if(tool) openToolModal(tool);
+      });
+    });
+  }
+
+  let currentTool = null;
+  function openToolModal(tool) {
+    currentTool = tool;
+    document.getElementById("modalTitle").innerText = tool.name;
+    const modalBody = document.getElementById("modalBody");
+    modalBody.innerHTML = `
+      <div class="tool-input-area">
+        <label>Enter prompt / description:</label>
+        <textarea id="toolPromptInput" rows="3" placeholder="e.g., ${tool.promptExample || "Write something..."}"></textarea>
+        <button id="generateToolBtn" class="btn-primary"><i class="fas fa-magic"></i> Generate</button>
+        <div id="toolOutputArea" class="output-box">✨ Your AI-generated result will appear here.</div>
+      </div>
+    `;
+    document.getElementById("toolModal").classList.add("active");
+    document.getElementById("generateToolBtn").addEventListener("click", async () => {
+      const inputVal = document.getElementById("toolPromptInput").value;
+      const outputDiv = document.getElementById("toolOutputArea");
+      outputDiv.innerHTML = "<i class='fas fa-spinner fa-pulse'></i> Generating...";
+      const result = await simulateAI(tool.id, inputVal);
+      outputDiv.innerHTML = result;
+    });
+    document.getElementById("copyOutputBtn").onclick = () => {
+      const outText = document.getElementById("toolOutputArea").innerText;
+      navigator.clipboard.writeText(outText);
+      alert("Copied to clipboard!");
+    };
+    document.getEl
