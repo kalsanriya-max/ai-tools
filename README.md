@@ -17,7 +17,7 @@ Free, open-source AI tools platform for creators and developers.
 4. Get AI-generated results
 
 ## Live Demo
-https://github.com/kalsanriya-max/ai-tools.git
+https://kalsanriya-max.github.io/ai-tools/
 ## Technologies
 - HTML5
 - CSS3
