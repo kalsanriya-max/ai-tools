@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Quick AI Tools - free browser-based AI-inspired productivity tools.">
+<title>Quick AI Tools</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="navbar">
+  <div class="container nav-inner">
+    <a class="brand" href="#home">⚡ <span>Quick AI Tools</span></a>
+    <nav class="desktop-nav">
+      <a href="#home">Home</a><a href="#tools">Tools</a><a href="#pdf">PDF</a>
+      <a href="#images">Images</a><a href="#resume">Resume</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" title="Toggle theme">🌙</button>
+      <button class="icon-btn mobile-only" id="menuBtn">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a><a href="#tools">Tools</a><a href="#pdf">PDF</a>
+    <a href="#images">Images</a><a href="#resume">Resume</a>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero container">
+  <div class="badge">✨ 100% browser-based • No signup</div>
+  <h1>Everything you need.<br><span>Powered by smart tools.</span></h1>
+  <p>Create, convert, summarize, write, design and organize — all from one fast workspace.</p>
+  <div class="hero-actions">
+    <a class="btn primary" href="#tools">Explore Tools</a>
+    <button class="btn secondary" id="assistantBtn">Try AI Assistant</button>
+  </div>
+  <div class="search-wrap">
+    <span>🔍</span><input id="toolSearch" placeholder="What do you want to do? Search tools...">
+  </div>
+  <div class="popular"><b>Popular:</b>
+    <button data-open="summarizer">PDF Summarizer</button>
+    <button data-open="writer">AI Writer</button>
+    <button data-open="imagegen">Image Generator</button>
+  </div>
+</section>
+
+<section class="container quick-actions">
+  <button data-open="summarizer">📝<small>Summarize</small></button>
+  <button data-open="rewriter">🔄<small>Rewrite</small></button>
+  <button data-open="translator">🌐<small>Translate</small></button>
+  <button data-open="imagegen">🎨<small>Generate Image</small></button>
+  <button data-open="bgremove">🖼️<small>Remove BG</small></button>
+  <button data-open="pdf">📄<small>PDF Tools</small></button>
+  <button data-open="resume">📄<small>Resume</small></button>
+  <button data-open="presentation">📽️<small>Presentation</small></button>
+</section>
+
+<section class="container section" id="tools">
+  <div class="section-head"><div><h2>Popular AI Tools</h2><p>Free utilities that run directly in your browser.</p></div></div>
+  <div class="tools-grid" id="toolsGrid">
+    <article class="tool-card" data-search="pdf summarize pdf text document"><div class="tool-icon">📄</div><h3>PDF Summarizer</h3><p>Extract PDF text and create a concise summary.</p><div><span class="tag free">FREE</span><span class="tag">PDF</span></div><button data-open="summarizer">Open tool →</button></article>
+    <article class="tool-card" data-search="writer writing content ai text"><div class="tool-icon">✍️</div><h3>AI Writer</h3><p>Create titles, captions, ideas and polished copy.</p><div><span class="tag free">FREE</span><span class="tag">Writing</span></div><button data-open="writer">Open tool →</button></article>
+    <article class="tool-card" data-search="image generator create art prompt"><div class="tool-icon">🎨</div><h3>Image Generator</h3><p>Turn a prompt into a downloadable SVG artwork.</p><div><span class="tag free">FREE</span><span class="tag">Images</span></div><button data-open="imagegen">Open tool →</button></article>
+    <article class="tool-card" data-search="background remove image photo bg"><div class="tool-icon">🖼️</div><h3>Background Remover</h3><p>Remove near-uniform backgrounds from images locally.</p><div><span class="tag free">FREE</span><span class="tag">Images</span></div><button data-open="bgremove">Open tool →</button></article>
+    <article class="tool-card" data-search="rewrite paraphrase text"><div class="tool-icon">🔄</div><h3>Text Rewriter</h3><p>Rewrite text in simple, professional or friendly styles.</p><div><span class="tag free">FREE</span><span class="tag">Text</span></div><button data-open="rewriter">Open tool →</button></article>
+    <article class="tool-card" data-search="translate language hindi english"><div class="tool-icon">🌐</div><h3>Translator</h3><p>Translate common phrases between English and Hindi.</p><div><span class="tag free">FREE</span><span class="tag">Language</span></div><button data-open="translator">Open tool →</button></article>
+    <article class="tool-card" data-search="resume cv builder"><div class="tool-icon">📋</div><h3>Resume Builder</h3><p>Build and print a clean one-page resume.</p><div><span class="tag free">FREE</span><span class="tag">Career</span></div><button data-open="resume">Open tool →</button></article>
+    <article class="tool-card" data-search="presentation slides ppt"><div class="tool-icon">📽️</div><h3>Presentation Maker</h3><p>Create a downloadable HTML slide deck.</p><div><span class="tag free">FREE</span><span class="tag">Slides</span></div><button data-open="presentation">Open tool →</button></article>
+  </div>
+  <div id="noResults" class="empty hidden">No matching tools found.</div>
+</section>
+
+<section class="container section" id="pdf">
+  <div class="feature"><div><h2>PDF Workspace</h2><p>Upload a PDF, extract its text in your browser, then summarize or download the extracted text.</p><button class="btn primary" data-open="summarizer">Open PDF Summarizer</button></div><div class="feature-icon">📄✨</div></div>
+</section>
+<section class="container section" id="images">
+  <div class="feature"><div><h2>Image Workspace</h2><p>Generate simple SVG artwork from prompts or remove simple backgrounds from uploaded images.</p><button class="btn primary" data-open="imagegen">Open Image Tools</button></div><div class="feature-icon">🎨🖼️</div></div>
+</section>
+<section class="container section" id="resume">
+  <div class="feature"><div><h2>Career Tools</h2><p>Create a polished resume and print it as PDF using your browser's print dialog.</p><button class="btn primary" data-open="resume">Build Resume</button></div><div class="feature-icon">📋</div></div>
+</section>
+
+<section class="container free-banner">
+  <h2>All tools are free</h2><p>No subscriptions. No paid plans. Your files stay in your browser for the local tools.</p>
+  <a class="btn light" href="#tools">Start Using Free</a>
+</section>
+</main>
+
+<footer><div class="container footer-inner"><div><b>⚡ Quick AI Tools</b><p>Fast, simple browser utilities.</p></div><div><a href="#tools">Tools</a><a href="#pdf">PDF</a><a href="#images">Images</a><a href="#resume">Resume</a></div></div><p class="copyright">© 2026 Quick AI Tools</p></footer>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="app.js" type="module"></script>
+</body>
+</html>
