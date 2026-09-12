@@ -1,101 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Quick AI Tools - free browser-based AI-inspired productivity tools.">
-<title>Quick AI Tools</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>MicroToolHub · 12 Free Online Tools – No Signup</title>
+  <meta name="description" content="Free online micro tools: word counter, unit converter, QR generator, password generator, JSON formatter, base64, color picker & more. Fast, no signup.">
+  <meta name="keywords" content="free online tools, word counter, unit converter, qr code generator, password generator, json formatter, base64 encoder">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f7f9fc;
+      color: #0f172a;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 1rem;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #dbeafe;
+      --surface: #ffffff;
+      --border-light: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --shadow-sm: 0 4px 6px -2px rgba(0, 0, 0, 0.03), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+      --radius-card: 1.5rem;
+      --radius-button: 2rem;
+      --transition: all 0.2s ease;
+    }
+
+    h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.03em; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+    h3 { font-size: 1.25rem; font-weight: 600; }
+    a { text-decoration: none; color: inherit; }
+    button, .btn { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+    /* HEADER */
+    .site-header { padding: 1.25rem 0 0.5rem; }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-radius: 3rem; padding: 0.6rem 1.5rem 0.6rem 1.8rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .logo { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.4rem; letter-spacing: -0.02em; }
+    .logo-icon {
+      background: var(--primary); color: white;
+      width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center;
+      border-radius: 0.75rem; font-size: 1.1rem; font-weight: 700;
+      box-shadow: 0 4px 8px rgba(37, 99, 235, 0.25);
+    }
+    .logo span { color: var(--primary); }
+    .nav-links { display: flex; align-items: center; gap: 1.8rem; font-weight: 500; font-size: 0.95rem; color: var(--text-muted); }
+    .nav-links a { transition: var(--transition); }
+    .nav-links a:hover { color: var(--primary); }
+
+    /* HERO */
+    .hero { text-align: center; padding: 3rem 0 2rem; max-width: 800px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block; background: var(--primary-light); color: var(--primary-dark);
+      font-size: 0.85rem; font-weight: 600; padding: 0.35rem 1rem;
+      border-radius: 2rem; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 80%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 560px; margin: 0 auto 2rem; }
+
+    /* SECTION */
+    .section-label {
+      font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--primary); margin-bottom: 0.5rem;
+    }
+    .tools-section { padding: 1.5rem 0 3rem; }
+    .section-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .section-header h2 { font-size: 1.8rem; font-weight: 700; }
+
+    /* TOOLS GRID */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tool-card {
+      background: var(--surface); border-radius: var(--radius-card);
+      padding: 1.75rem 1.5rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(226, 232, 240, 0.6);
+      transition: var(--transition);
+      display: flex; flex-direction: column; cursor: pointer;
+      animation: cardFade 0.3s ease both;
+    }
+    @keyframes cardFade {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .tool-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(37, 99, 235, 0.25);
+    }
+    .tool-icon {
+      font-size: 2rem; margin-bottom: 1.25rem;
+      background: var(--primary-light); width: 3.25rem; height: 3.25rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 1rem; color: var(--primary-dark);
+    }
+    .tool-card h3 { margin-bottom: 0.5rem; font-size: 1.15rem; }
+    .tool-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem; flex: 1; }
+    .tool-link {
+      font-weight: 500; font-size: 0.9rem; color: var(--primary);
+      display: flex; align-items: center; gap: 0.25rem; margin-top: auto;
+    }
+
+    /* TOOL MODAL */
+    .tool-modal-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      display: none; align-items: flex-start; justify-content: center;
+      padding: 2rem 1rem; z-index: 1000; overflow-y: auto;
+    }
+    .tool-modal-overlay.active { display: flex; }
+    .tool-modal {
+      background: white; border-radius: 2rem;
+      max-width: 720px; width: 100%; padding: 2rem;
+      box-shadow: 0 40px 60px -20px rgba(0,0,0,0.3);
+      animation: modalIn 0.25s ease; margin: auto;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.96) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem; gap: 1rem;
+    }
+    .modal-header h3 { font-size: 1.4rem; display: flex; align-items: center; gap: 0.6rem; }
+    .modal-close-x {
+      background: #f1f5f9; color: var(--text-muted);
+      width: 2.25rem; height: 2.25rem; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 600; transition: var(--transition);
+    }
+    .modal-close-x:hover { background: #fee2e2; color: #dc2626; }
+
+    /* TOOL UI ELEMENTS */
+    .tool-ui label {
+      display: block; font-size: 0.85rem; font-weight: 600;
+      color: var(--text-muted); margin-bottom: 0.4rem; margin-top: 1rem;
+    }
+    .tool-ui textarea, .tool-ui input[type="text"], .tool-ui input[type="number"], .tool-ui select {
+      width: 100%; padding: 0.85rem 1rem;
+      border: 1.5px solid var(--border-light); border-radius: 0.85rem;
+      font-family: inherit; font-size: 1rem; color: var(--text-main);
+      background: #f8fafc; transition: var(--transition); outline: none;
+      resize: vertical;
+    }
+    .tool-ui textarea:focus, .tool-ui input:focus, .tool-ui select:focus {
+      border-color: var(--primary); background: white;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    .tool-ui textarea { min-height: 120px; }
+    .tool-ui .row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    }
+    .tool-ui .row-3 {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0.75rem;
+      align-items: end;
+    }
+    .btn-primary {
+      background: var(--primary); color: white;
+      padding: 0.85rem 1.75rem; border-radius: var(--radius-button);
+      font-weight: 500; font-size: 0.95rem; transition: var(--transition);
+      box-shadow: 0 6px 12px rgba(37, 99, 235, 0.25);
+      display: inline-block; margin-top: 1.25rem;
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .btn-secondary {
+      background: #f1f5f9; color: var(--text-main);
+      padding: 0.85rem 1.5rem; border-radius: var(--radius-button);
+      font-weight: 500; font-size: 0.95rem; transition: var(--transition);
+      display: inline-block; margin-top: 1.25rem; margin-left: 0.5rem;
+    }
+    .btn-secondary:hover { background: #e2e8f0; }
+    .result-box {
+      margin-top: 1.25rem; padding: 1rem 1.25rem;
+      background: #f0fdf4; border: 1.5px solid #bbf7d0;
+      border-radius: 0.85rem; font-family: 'Courier New', monospace;
+      font-size: 0.95rem; word-break: break-all; color: #166534;
+      min-height: 3rem;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 0.75rem; margin-top: 1rem;
+    }
+    .stat-box {
+      background: #f8fafc; border: 1px solid var(--border-light);
+      border-radius: 0.85rem; padding: 0.85rem; text-align: center;
+    }
+    .stat-box .num { font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+    .stat-box .lbl { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; }
+
+    /* AD SLOT */
+    .ad-slot {
+      background: #f1f5f9; border-radius: 1.5rem; padding: 1.5rem;
+      text-align: center; color: #64748b; font-size: 0.85rem;
+      border: 1px dashed #cbd5e1; margin: 2rem 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 500;
+    }
+    .ad-slot span { opacity: 0.6; }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 3rem 0 2rem; border-top: 1px solid var(--border-light);
+      margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;
+    }
+    .footer-grid {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-brand { font-weight: 600; color: var(--text-main); font-size: 1.1rem; }
+    .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a:hover { color: var(--primary); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .header-inner { border-radius: 2rem; padding: 0.6rem 1rem 0.6rem 1.2rem; }
+      .nav-links { display: none; }
+      .hero { padding: 2rem 0 1.5rem; }
+      .tools-grid { gap: 1rem; }
+      .tool-modal { padding: 1.5rem; border-radius: 1.5rem; }
+      .tool-ui .row, .tool-ui .row-3 { grid-template-columns: 1fr; }
+      .footer-grid { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
-<header class="navbar">
-  <div class="container nav-inner">
-    <a class="brand" href="#home">⚡ <span>Quick AI Tools</span></a>
-    <nav class="desktop-nav">
-      <a href="#home">Home</a><a href="#tools">Tools</a><a href="#pdf">PDF</a>
-      <a href="#images">Images</a><a href="#resume">Resume</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="icon-btn" id="themeBtn" title="Toggle theme">🌙</button>
-      <button class="icon-btn mobile-only" id="menuBtn">☰</button>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-icon">M</span>
+        Micro<span>ToolHub</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#tools">Tools</a>
+        <a href="#why">Why</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-badge">⚡ 12 Free Tools · No Signup · 100% Browser</div>
+      <h1>Small Tools.<br>Big Time Saved.</h1>
+      <p>A growing collection of fast, useful micro tools. Everything runs in your browser — no data leaves your device.</p>
+    </section>
+
+    <div class="container ad-slot">
+      <span>📢 Advertisement — Google AdSense ready</span>
+    </div>
+
+    <section class="tools-section container" id="tools">
+      <div class="section-header">
+        <div>
+          <div class="section-label">⚡️ instant utilities</div>
+          <h2>Pick a tool & start</h2>
+        </div>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">12 tools · all free</span>
+      </div>
+      <div class="tools-grid" id="toolsGrid"></div>
+    </section>
+
+    <div class="container ad-slot">
+      <span>📢 Advertisement — Google AdSense ready</span>
+    </div>
+
+    <section class="tools-section container" id="why">
+      <div class="section-header">
+        <div>
+          <div class="section-label">🔍 why microtoolhub</div>
+          <h2>Built for speed and privacy</h2>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.5rem;">
+        <div style="background: white; border-radius: 1.5rem; padding: 1.8rem; box-shadow: var(--shadow-sm);">
+          <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">⚡</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.4rem;">Instant results</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">No signup, no waiting. Tools run directly in your browser.</p>
+        </div>
+        <div style="background: white; border-radius: 1.5rem; padding: 1.8rem; box-shadow: var(--shadow-sm);">
+          <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🔒</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.4rem;">100% private</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Your text & data never leave your device. All processing is local.</p>
+        </div>
+        <div style="background: white; border-radius: 1.5rem; padding: 1.8rem; box-shadow: var(--shadow-sm);">
+          <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">📱</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.4rem;">Mobile first</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Works great on phone, tablet, and desktop.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-section container" id="faq">
+      <div class="section-header">
+        <div>
+          <div class="section-label">❓ faq</div>
+          <h2>Common questions</h2>
+        </div>
+      </div>
+      <div style="display: grid; gap: 1rem; max-width: 720px;">
+        <div style="background: white; border-radius: 1.25rem; padding: 1.5rem; box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 1.05rem; margin-bottom: 0.3rem;">Are these tools free?</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Yes, all tools are 100% free and supported by non-intrusive ads.</p>
+        </div>
+        <div style="background: white; border-radius: 1.25rem; padding: 1.5rem; box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 1.05rem; margin-bottom: 0.3rem;">Do you store my data?</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">No. All tools run entirely in your browser. Your input is never sent to any server.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">MicroToolHub</div>
+      <div class="footer-links">
+        <a href="#tools">Tools</a>
+        <a href="#why">Why</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div style="font-size: 0.85rem; opacity: 0.8;">© 2025 MicroToolHub — Small Tools. Big Time Saved.</div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="tool-modal-overlay" id="toolModal">
+    <div class="tool-modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Tool</h3>
+        <button class="modal-close-x" id="modalCloseBtn" aria-label="Close">✕</button>
+      </div>
+      <div class="tool-ui" id="modalBody"></div>
     </div>
   </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#home">Home</a><a href="#tools">Tools</a><a href="#pdf">PDF</a>
-    <a href="#images">Images</a><a href="#resume">Resume</a>
-  </div>
-</header>
 
-<main id="home">
-<section class="hero container">
-  <div class="badge">✨ 100% browser-based • No signup</div>
-  <h1>Everything you need.<br><span>Powered by smart tools.</span></h1>
-  <p>Create, convert, summarize, write, design and organize — all from one fast workspace.</p>
-  <div class="hero-actions">
-    <a class="btn primary" href="#tools">Explore Tools</a>
-    <button class="btn secondary" id="assistantBtn">Try AI Assistant</button>
-  </div>
-  <div class="search-wrap">
-    <span>🔍</span><input id="toolSearch" placeholder="What do you want to do? Search tools...">
-  </div>
-  <div class="popular"><b>Popular:</b>
-    <button data-open="summarizer">PDF Summarizer</button>
-    <button data-open="writer">AI Writer</button>
-    <button data-open="imagegen">Image Generator</button>
-  </div>
-</section>
+<script>
+(function() {
+  "use strict";
 
-<section class="container quick-actions">
-  <button data-open="summarizer">📝<small>Summarize</small></button>
-  <button data-open="rewriter">🔄<small>Rewrite</small></button>
-  <button data-open="translator">🌐<small>Translate</small></button>
-  <button data-open="imagegen">🎨<small>Generate Image</small></button>
-  <button data-open="bgremove">🖼️<small>Remove BG</small></button>
-  <button data-open="pdf">📄<small>PDF Tools</small></button>
-  <button data-open="resume">📄<small>Resume</small></button>
-  <button data-open="presentation">📽️<small>Presentation</small></button>
-</section>
+  /* ============================================================
+     TOOL DEFINITIONS
+  ============================================================ */
+  const tools = [
+    { id: 'word-counter',    icon: '🔢', title: 'Word Counter',        desc: 'Count words, characters, sentences & read time instantly.' },
+    { id: 'case-converter',  icon: '🔠', title: 'Case Converter',      desc: 'Convert text to UPPER, lower, Title, Sentence or camelCase.' },
+    { id: 'unit-converter',  icon: '📐', title: 'Unit Converter',      desc: 'Convert length, weight & temperature units instantly.' },
+    { id: 'qr-generator',    icon: '🔗', title: 'QR Code Generator',   desc: 'Create downloadable QR codes for any text or URL.' },
+    { id: 'password-gen',    icon: '🔐', title: 'Password Generator',  desc: 'Generate strong, secure passwords with custom options.' },
+    { id: 'color-picker',    icon: '🎨', title: 'Color Picker',        desc: 'Pick colors and get HEX, RGB, HSL values. Copy instantly.' },
+    { id: 'base64',          icon: '🔁', title: 'Base64 Encoder',      desc: 'Encode or decode Base64 text safely in your browser.' },
+    { id: 'json-formatter',  icon: '📋', title: 'JSON Formatter',      desc: 'Beautify, minify and validate JSON data.' },
+    { id: 'url-encoder',     icon: '🌐', title: 'URL Encoder',         desc: 'Encode or decode URL components.' },
+    { id: 'age-calculator',  icon: '🎂', title: 'Age Calculator',      desc: 'Calculate exact age in years, months and days.' },
+    { id: 'lorem-ipsum',     icon: '📄', title: 'Lorem Ipsum',         desc: 'Generate placeholder paragraphs for designs.' },
+    { id: 'markdown-preview',icon: '📝', title: 'Markdown Preview',    desc: 'Write markdown & see live HTML preview.' }
+  ];
 
-<section class="container section" id="tools">
-  <div class="section-head"><div><h2>Popular AI Tools</h2><p>Free utilities that run directly in your browser.</p></div></div>
-  <div class="tools-grid" id="toolsGrid">
-    <article class="tool-card" data-search="pdf summarize pdf text document"><div class="tool-icon">📄</div><h3>PDF Summarizer</h3><p>Extract PDF text and create a concise summary.</p><div><span class="tag free">FREE</span><span class="tag">PDF</span></div><button data-open="summarizer">Open tool →</button></article>
-    <article class="tool-card" data-search="writer writing content ai text"><div class="tool-icon">✍️</div><h3>AI Writer</h3><p>Create titles, captions, ideas and polished copy.</p><div><span class="tag free">FREE</span><span class="tag">Writing</span></div><button data-open="writer">Open tool →</button></article>
-    <article class="tool-card" data-search="image generator create art prompt"><div class="tool-icon">🎨</div><h3>Image Generator</h3><p>Turn a prompt into a downloadable SVG artwork.</p><div><span class="tag free">FREE</span><span class="tag">Images</span></div><button data-open="imagegen">Open tool →</button></article>
-    <article class="tool-card" data-search="background remove image photo bg"><div class="tool-icon">🖼️</div><h3>Background Remover</h3><p>Remove near-uniform backgrounds from images locally.</p><div><span class="tag free">FREE</span><span class="tag">Images</span></div><button data-open="bgremove">Open tool →</button></article>
-    <article class="tool-card" data-search="rewrite paraphrase text"><div class="tool-icon">🔄</div><h3>Text Rewriter</h3><p>Rewrite text in simple, professional or friendly styles.</p><div><span class="tag free">FREE</span><span class="tag">Text</span></div><button data-open="rewriter">Open tool →</button></article>
-    <article class="tool-card" data-search="translate language hindi english"><div class="tool-icon">🌐</div><h3>Translator</h3><p>Translate common phrases between English and Hindi.</p><div><span class="tag free">FREE</span><span class="tag">Language</span></div><button data-open="translator">Open tool →</button></article>
-    <article class="tool-card" data-search="resume cv builder"><div class="tool-icon">📋</div><h3>Resume Builder</h3><p>Build and print a clean one-page resume.</p><div><span class="tag free">FREE</span><span class="tag">Career</span></div><button data-open="resume">Open tool →</button></article>
-    <article class="tool-card" data-search="presentation slides ppt"><div class="tool-icon">📽️</div><h3>Presentation Maker</h3><p>Create a downloadable HTML slide deck.</p><div><span class="tag free">FREE</span><span class="tag">Slides</span></div><button data-open="presentation">Open tool →</button></article>
-  </div>
-  <div id="noResults" class="empty hidden">No matching tools found.</div>
-</section>
+  /* ============================================================
+     UTILITIES
+  ============================================================ */
+  const $ = (sel) => document.querySelector(sel);
 
-<section class="container section" id="pdf">
-  <div class="feature"><div><h2>PDF Workspace</h2><p>Upload a PDF, extract its text in your browser, then summarize or download the extracted text.</p><button class="btn primary" data-open="summarizer">Open PDF Summarizer</button></div><div class="feature-icon">📄✨</div></div>
-</section>
-<section class="container section" id="images">
-  <div class="feature"><div><h2>Image Workspace</h2><p>Generate simple SVG artwork from prompts or remove simple backgrounds from uploaded images.</p><button class="btn primary" data-open="imagegen">Open Image Tools</button></div><div class="feature-icon">🎨🖼️</div></div>
-</section>
-<section class="container section" id="resume">
-  <div class="feature"><div><h2>Career Tools</h2><p>Create a polished resume and print it as PDF using your browser's print dialog.</p><button class="btn primary" data-open="resume">Build Resume</button></div><div class="feature-icon">📋</div></div>
-</section>
+  function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = '✓ Copied!';
+      btn.style.background = '#16a34a';
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = '';
+      }, 1500);
+    });
+  }
 
-<section class="container free-banner">
-  <h2>All tools are free</h2><p>No subscriptions. No paid plans. Your files stay in your browser for the local tools.</p>
-  <a class="btn light" href="#tools">Start Using Free</a>
-</section>
-</main>
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
 
-<footer><div class="container footer-inner"><div><b>⚡ Quick AI Tools</b><p>Fast, simple browser utilities.</p></div><div><a href="#tools">Tools</a><a href="#pdf">PDF</a><a href="#images">Images</a><a href="#resume">Resume</a></div></div><p class="copyright">© 2026 Quick AI Tools</p></footer>
+  /* ============================================================
+     TOOL UI RENDERERS — each returns {html, init}
+  ============================================================ */
+  const toolUIs = {
 
-<div class="modal-backdrop" id="modalBackdrop">
-  <div class="modal" role="dialog" aria-modal="true">
-    <button class="modal-close" id="modalClose">✕</button>
-    <div id="modalContent"></div>
-  </div>
-</div>
-<div class="toast" id="toast"></div>
-<script src="app.js" type="module"></script>
-</body>
-</html>
+    /* ---- 1. WORD COUNTER ---- */
+    'word-counter': () => ({
+      html: `
+        <label>Paste or type your text</label>
+        <textarea id="wcInput" placeholder="Type or paste text here..."></textarea>
+        <div class="stats-grid">
+          <div class="stat-box"><div class="num" id="wcWords">0</div><div class="lbl">Words</div></div>
+          <div class="stat-box"><div class="num" id="wcChars">0</div><div class="lbl">Characters</div></div>
+          <div class="stat-box"><div class="num" id="wcSentences">0</div><div class="lbl">Sentences</div></div>
+          <div class="stat-box"><div class="num" id="wcTime">0m</div><div class="lbl">Read Time</div></div>
+        </div>`,
+      init: () => {
+        const input = $('#wcInput');
+        const update = () => {
+          const text = input.value;
+          const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+          const chars = text.length;
+          const sentences = text.trim() ? (text.match(/[.!?]+/g) || []).length || 1 : 0;
+          const mins = Math.max(1, Math.ceil(words / 200));
+          $('#wcWords').textContent = words;
+          $('#wcChars').textContent = chars;
+          $('#wcSentences').textContent = sentences;
+          $('#wcTime').textContent = words ? mins + 'm' : '0m';
+        };
+        input.addEventListener('input', update);
+        update();
+      }
+    }),
+
+    /* ---- 2. CASE CONVERTER ---- */
+    'case-converter': () => ({
+      html: `
+        <label>Enter text</label>
+        <textarea id="ccInput" placeholder="Type something...
